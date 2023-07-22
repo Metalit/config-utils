@@ -65,7 +65,7 @@ jobs:
         restore: false
 
         eager_publish: true # Will publish the package
-        publish_token: ${{ secrets.QPM_PUBLISH_KEY }} # Token required for authorization publish to qpackages.com
+        publish_token: "testing don't publish" # Token required for authorization publish to qpackages.com
         version: ${{ steps.get_tag_version.outputs.VERSION }}
         tag: ${{ steps.get_tag_version.outputs.TAG }}
 
