@@ -30,8 +30,8 @@ jobs:
       id: get_tag_version
       run: |
         echo ${GITHUB_REF#refs/tags/}
-        echo TAG="${GITHUB_REF#refs/tags/}"" >> $GITHUB_OUTPUT
-        echo VERSION="${GITHUB_REF#refs/tags/v}"" >> $GITHUB_OUTPUT
+        echo TAG="${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        echo VERSION="${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
     - name: QPM Action
       uses: Fernthedev/qpm-action@main
@@ -55,6 +55,10 @@ jobs:
       run: |
         cd ${GITHUB_WORKSPACE}
         pwsh -Command ./build.ps1
+
+    - name: Check version
+      run: |
+        echo ${{ steps.get_tag_version.outputs.VERSION }}
 
       # Publish the package; this also modifies and commits the qpm.json/qpm.shared.json with the asset links
     - name: QPM Publish
